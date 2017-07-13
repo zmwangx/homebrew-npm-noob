@@ -1,0 +1,35 @@
+.TH NOOB "1" "July 2017" "noob 0.1" "User Commands"
+.SH NAME
+noob \- generate Homebrew formulae for npm packages
+.SH SYNOPSIS
+.B noob [\-h] [\-w] [\-t TAP] [\-v] [\-\-debug] package
+.SH DESCRIPTION
+Generate a Homebrew formula for an npm package. By default the generated
+formula is printed to stdout. If \fB\-w\fR, \fB\-\-write\fR is specified, the formula is
+directly written to the specified tap, or homebrew/core if no tap is
+specified.
+.SS "positional arguments:"
+.TP
+package
+Name of the package on npm.
+.SS "optional arguments:"
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Show help message and exit.
+.TP
+\fB\-w\fR, \fB\-\-write\fR
+Write to filesystem instead of stdout.
+.TP
+\fB\-t\fR TAP, \fB\-\-tap\fR TAP
+If writing to filesystem, write to this tap instead of homebrew/core.
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Show program's version number and exit.
+.HP
+\fB\-\-debug\fR
+.SH AUTHORS
+Zhiming Wang <zmwangx@gmail.com>
+.SH HOME
+.I https://github.com/zmwangx/homebrew-npm-noob
+.SH REPORTING BUGS
+.I https://github.com/zmwangx/homebrew-npm-noob/issues
