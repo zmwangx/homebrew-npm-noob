@@ -3,8 +3,8 @@ class Noob < Formula
 
   desc "Generate Homebrew formulae for npm packages"
   homepage "https://github.com/zmwangx/homebrew-npm-noob"
-  url "https://github.com/zmwangx/homebrew-npm-noob/archive/v0.1.tar.gz"
-  sha256 "e78a85db1778729e5f4ecac038be09cc62c0236f589c242dfaefd11487cede86"
+  url "https://github.com/zmwangx/homebrew-npm-noob/archive/v0.2.tar.gz"
+  sha256 "15e2ac4cbf3e549f62199e3b0e3c8d5fbc94043a7aba1b04786f37dffc41de11"
 
   depends_on :python3
 
@@ -12,7 +12,7 @@ class Noob < Formula
     virtualenv_create(libexec, "python3")
     system libexec/"bin/pip", "install", "."
     bin.install_symlink libexec/"bin/noob"
-    man1.install "manpages/noob.1"
+    man1.install "docs/noob.1"
   end
 
   test do
