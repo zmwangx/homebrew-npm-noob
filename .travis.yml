@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+cache: pip
+before_install:
+  - pip install --upgrade pip
+install:
+  - pip install .[test]
+script:
+  - py.test
