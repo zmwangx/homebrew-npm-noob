@@ -1,6 +1,8 @@
 homebrew-npm-noob
 =================
 
+|PyPI| |License| |Build Status|
+
 homebrew-npm-noob generates a Homebrew formula for an npm package. It is inspired by `homebrew-pypi-poet <https://github.com/tdsmith/homebrew-pypi-poet>`_.
 
 Installation
@@ -46,3 +48,10 @@ License
 -------
 
 homebrew-npm-noob is released under the MIT license. See ``COPYING`` for details.
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/homebrew-npm-noob.svg?maxAge=3600
+   :target: https://pypi.python.org/pypi/homebrew-npm-noob
+.. |License| image:: https://img.shields.io/badge/license-MIT-blue.svg?maxAge=86400
+   :target: https://github.com/zmwangx/homebrew-npm-noob/blob/master/COPYING
+.. |Build Status| image:: https://travis-ci.org/zmwangx/homebrew-npm-noob.svg?branch=master
+   :target: https://travis-ci.org/zmwangx/homebrew-npm-noob
