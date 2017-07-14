@@ -39,7 +39,7 @@ class {{ package.class_name }} < Formula
   end
 
   test do
-    raise 'Test not implemented.'
+    raise "Test not implemented."
   end
 end
 ''')
