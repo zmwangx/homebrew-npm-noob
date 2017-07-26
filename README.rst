@@ -77,6 +77,11 @@ Example
       end
     end
 
+See Also
+--------
+
+`Node for Formula Authors <https://github.com/Homebrew/brew/blob/master/docs/Node-for-Formula-Authors.md>`_ in Homebrew's docs.
+
 License
 -------
 
