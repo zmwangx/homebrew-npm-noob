@@ -6,7 +6,7 @@ class Noob < Formula
   url "https://github.com/zmwangx/homebrew-npm-noob/archive/v0.2.tar.gz"
   sha256 "15e2ac4cbf3e549f62199e3b0e3c8d5fbc94043a7aba1b04786f37dffc41de11"
 
-  depends_on :python3
+  depends_on "python3"
 
   def install
     virtualenv_create(libexec, "python3")
