@@ -37,7 +37,8 @@ class {{ package.class_name }} < Formula
     raise "Test not implemented."
   end
 end
-"""
+""",
+    keep_trailing_newline=True,
 )
 
 
