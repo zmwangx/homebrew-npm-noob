@@ -25,6 +25,7 @@ class {{ package.class_name }} < Formula
   desc "{{ package.desc }}"
   homepage "{{ package.homepage }}"
   {{ package.stable.spec|indent(2) }}
+  license "{{ package.license }}"
 
   livecheck do
     url :stable
@@ -87,6 +88,7 @@ class Package(object):
         self.name = metadata["name"]
         self.desc = metadata["description"].rstrip(".")  # strip trailing periods
         self.homepage = metadata["homepage"]
+        self.license = metadata["license"]
 
         stable_ver = metadata["dist-tags"]["latest"]
         self.stable = Version(metadata["versions"][stable_ver])
