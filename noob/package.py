@@ -27,12 +27,6 @@ class {{ package.class_name }} < Formula
   homepage "{{ package.homepage }}"
   {{ package.stable.spec|indent(2) }}
 
-  {% if package.devel -%}
-  devel do
-    {{ package.devel.spec|indent(4) }}
-  end
-
-  {% endif -%}
   depends_on "node"
 
   def install
@@ -92,12 +86,6 @@ class Package(object):
 
         stable_ver = metadata["dist-tags"]["latest"]
         self.stable = Version(metadata["versions"][stable_ver])
-
-        if "next" in metadata["dist-tags"]:
-            devel_ver = metadata["dist-tags"]["next"]
-            self.devel = Version(metadata["versions"][devel_ver])
-        else:
-            self.devel = None
 
     def __str__(self):
         desc = "%s %s" % (self.name, self.stable.version)
