@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import hashlib
-import logging
 import re
 
 import jinja2
@@ -11,13 +10,16 @@ from .util import logger
 
 DOWNLOAD_CHUNKSIZE = 65536
 
-VERSION_SPEC_TEMPLATE = jinja2.Template('''\
+VERSION_SPEC_TEMPLATE = jinja2.Template(
+    """\
 url "{{ version.url }}"
 version "{{ version.version }}"
 sha256 "{{ version.sha256 }}"
-''')
+"""
+)
 
-FORMULA_TEMPLATE = jinja2.Template('''\
+FORMULA_TEMPLATE = jinja2.Template(
+    """\
 require "language/node"
 
 class {{ package.class_name }} < Formula
@@ -42,20 +44,21 @@ class {{ package.class_name }} < Formula
     raise "Test not implemented."
   end
 end
-''')
+"""
+)
 
 
 class Version(object):
     def __init__(self, version_obj):
-        self.name = version_obj['name']
-        self.version = version_obj['version']
-        self.url = version_obj['dist']['tarball']
-        sha = version_obj['dist']['shasum']
+        self.name = version_obj["name"]
+        self.version = version_obj["version"]
+        self.url = version_obj["dist"]["tarball"]
+        sha = version_obj["dist"]["shasum"]
         if len(sha) == 64:
-            logger.debug('Using provided sha256 checksum for %s: %s', self.url, sha)
+            logger.debug("Using provided sha256 checksum for %s: %s", self.url, sha)
             self.sha256 = sha
         else:
-            logger.debug('Fetching %s', self.url)
+            logger.debug("Fetching %s", self.url)
             m = hashlib.sha256()
             resp = requests.get(self.url, stream=True)
             for chunk in resp.iter_content(DOWNLOAD_CHUNKSIZE):
@@ -63,10 +66,10 @@ class Version(object):
             self.sha256 = m.hexdigest()
 
     def __str__(self):
-        return '%s %s' % (self.name, self.version)
+        return "%s %s" % (self.name, self.version)
 
     def _repr_pretty_(self, p, cycle):
-        p.text('<noob.Version "%s">' % str(self) if not cycle else '...')
+        p.text('<noob.Version "%s">' % str(self) if not cycle else "...")
 
     @property
     def spec(self):
@@ -75,40 +78,40 @@ class Version(object):
 
 class Package(object):
     def __init__(self, name):
-        registry_url = 'https://registry.npmjs.org/%s' % name
-        logger.debug('Fetching %s', registry_url)
+        registry_url = "https://registry.npmjs.org/%s" % name
+        logger.debug("Fetching %s", registry_url)
         resp = requests.get(registry_url)
         if resp.status_code != 200:
-            raise RuntimeError('GET %s: HTTP %d' % (registry_url, resp.status_code))
+            raise RuntimeError("GET %s: HTTP %d" % (registry_url, resp.status_code))
 
         metadata = resp.json()
         self.metadata = metadata
-        self.name = metadata['name']
-        self.desc = metadata['description'].rstrip('.')  # strip trailing periods
-        self.homepage = metadata['homepage']
+        self.name = metadata["name"]
+        self.desc = metadata["description"].rstrip(".")  # strip trailing periods
+        self.homepage = metadata["homepage"]
 
-        stable_ver = metadata['dist-tags']['latest']
-        self.stable = Version(metadata['versions'][stable_ver])
+        stable_ver = metadata["dist-tags"]["latest"]
+        self.stable = Version(metadata["versions"][stable_ver])
 
-        if 'next' in metadata['dist-tags']:
-            devel_ver = metadata['dist-tags']['next']
-            self.devel = Version(metadata['versions'][devel_ver])
+        if "next" in metadata["dist-tags"]:
+            devel_ver = metadata["dist-tags"]["next"]
+            self.devel = Version(metadata["versions"][devel_ver])
         else:
             self.devel = None
 
     def __str__(self):
-        desc = '%s %s' % (self.name, self.stable.version)
+        desc = "%s %s" % (self.name, self.stable.version)
         if self.devel:
-            desc += ', %s (devel)' % self.devel.version
+            desc += ", %s (devel)" % self.devel.version
         return desc
 
     def _repr_pretty_(self, p, cycle):
-        p.text('<noob.Package "%s">' % str(self) if not cycle else '...')
+        p.text('<noob.Package "%s">' % str(self) if not cycle else "...")
 
     @property
     def class_name(self):
         # Convert non-alphanumeric characters to spaces, title case, then drop spaces.
-        return re.sub(r'[^a-zA-Z0-9]+', ' ', self.name).title().replace(' ', '')
+        return re.sub(r"[^a-zA-Z0-9]+", " ", self.name).title().replace(" ", "")
 
     @property
     def formula(self):
