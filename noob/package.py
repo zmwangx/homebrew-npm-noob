@@ -13,7 +13,6 @@ DOWNLOAD_CHUNKSIZE = 65536
 VERSION_SPEC_TEMPLATE = jinja2.Template(
     """\
 url "{{ version.url }}"
-version "{{ version.version }}"
 sha256 "{{ version.sha256 }}"
 """
 )
