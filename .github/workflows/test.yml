@@ -1,0 +1,36 @@
+name: test
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * 0'
+jobs:
+  test:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install '.[test,dev]'
+      - name: Test with pytest
+        run: |
+          pytest
+      - name: Audit generated formula
+        run: |
+          # Use a library that shouldn't be packaged, thus avoiding conflict with existing formulae.
+          noob --write react
+          # Replace description because we don't want to trigger an audit warning from something we have no control over.
+          sed -i "" 's/desc ".*"/desc "JavaScript formula"/' "$(brew --repository homebrew/core)/Formula/react.rb"
+          brew audit --new-formula react
+      - name: Check code style
+        run: |
+          git ls-files | grep '\.py$$' | xargs black --quiet --check --diff
