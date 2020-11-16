@@ -26,6 +26,10 @@ class {{ package.class_name }} < Formula
   homepage "{{ package.homepage }}"
   {{ package.stable.spec|indent(2) }}
 
+  livecheck do
+    url :stable
+  end
+
   depends_on "node"
 
   def install
