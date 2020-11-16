@@ -91,5 +91,5 @@ homebrew-npm-noob is released under the MIT license. See ``COPYING`` for details
    :target: https://pypi.python.org/pypi/homebrew-npm-noob
 .. |License| image:: https://img.shields.io/badge/license-MIT-blue.svg?maxAge=86400
    :target: https://github.com/zmwangx/homebrew-npm-noob/blob/master/COPYING
-.. |Build Status| image:: https://travis-ci.org/zmwangx/homebrew-npm-noob.svg?branch=master
-   :target: https://travis-ci.org/zmwangx/homebrew-npm-noob
+.. |Build Status| image:: https://github.com/zmwangx/homebrew-npm-noob/workflows/test/badge.svg
+   :target: https://github.com/zmwangx/homebrew-npm-noob/actions
