@@ -55,14 +55,12 @@ Example
     class BabelCli < Formula
       desc "Babel command line"
       homepage "https://babeljs.io/"
-      url "https://registry.npmjs.org/babel-cli/-/babel-cli-6.24.1.tgz"
-      version "6.24.1"
-      sha256 "d69a00bdb4f35184cda1f5bfe8075cd4d569600b8e61d864d1f08e360367933b"
+      url "https://registry.npmjs.org/babel-cli/-/babel-cli-6.26.0.tgz"
+      sha256 "81ac501721ff18200581c58542fa6226986766c53be35ad8f921fabd47834d02"
+      license "MIT"
 
-      devel do
-        url "https://registry.npmjs.org/babel-cli/-/babel-cli-7.0.0-alpha.15.tgz"
-        version "7.0.0-alpha.15"
-        sha256 "e825b9fe8e578aa392a8b398950070d3816c4c75e99953adb07ccfe858aea454"
+      livecheck do
+        url :stable
       end
 
       depends_on "node"
