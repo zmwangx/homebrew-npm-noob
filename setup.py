@@ -34,12 +34,6 @@ setuptools.setup(
     keywords="homebrew formula node npm",
     packages=["noob"],
     install_requires=["jinja2", "requests"],
-    extras_require={
-        "test": ["pytest"],
-    },
-    entry_points={
-        "console_scripts": [
-            "noob=noob.__main__:main",
-        ]
-    },
+    extras_require={"test": ["pytest"], "dev": ["black"]},
+    entry_points={"console_scripts": ["noob=noob.__main__:main"]},
 )
