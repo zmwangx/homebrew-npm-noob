@@ -3,8 +3,8 @@ class Noob < Formula
 
   desc "Generate Homebrew formulae for npm packages"
   homepage "https://github.com/zmwangx/homebrew-npm-noob"
-  url "https://github.com/zmwangx/homebrew-npm-noob/archive/v0.2.tar.gz"
-  sha256 "15e2ac4cbf3e549f62199e3b0e3c8d5fbc94043a7aba1b04786f37dffc41de11"
+  url "https://github.com/zmwangx/homebrew-npm-noob/archive/v0.3.tar.gz"
+  sha256 "fc1833d2a12b3737d19c0bb9cfa46937c5a5d903b232fb01baa57e97c8ebbab5"
 
   depends_on "python3"
 
