@@ -27,10 +27,6 @@ class {{ package.class_name }} < Formula
   {{ package.stable.spec|indent(2) }}
   license "{{ package.license }}"
 
-  livecheck do
-    url :stable
-  end
-
   depends_on "node"
 
   def install
