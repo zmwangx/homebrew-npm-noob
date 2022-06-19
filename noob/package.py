@@ -88,7 +88,7 @@ class Package(object):
         self.name = metadata["name"]
         self.desc = metadata["description"].rstrip(".")  # strip trailing periods
         self.homepage = metadata["homepage"]
-        self.license = metadata["license"]
+        self.license = metadata.get("license", "")
 
         stable_ver = metadata["dist-tags"]["latest"]
         self.stable = Version(metadata["versions"][stable_ver])
